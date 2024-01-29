@@ -1,0 +1,6 @@
+DIP Homework:
+
+- Rotation
+- Forward Wraping and Backward Wraping
+- Component Labelling
+- Intensity Transformation
