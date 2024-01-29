@@ -15,6 +15,8 @@ def rotateTransform(inputmatrix, x, y, a):
                 outputmatrix[math.ceil(xi), math.ceil(yi)] = 1
     print("Input Matrix\n",inputmatrix)
     print("Output Matrix\n",outputmatrix)
+    return outputmatrix
+    
 
 
 def translateTransform(inputmatrix, x, y, tx, ty):
