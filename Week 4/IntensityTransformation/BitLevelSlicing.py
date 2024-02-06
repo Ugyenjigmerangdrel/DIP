@@ -1,33 +1,26 @@
-import numpy as np
 import cv2
+import numpy as np
 
-# Define input image
-input_image = cv2.imread('bone.png', 0)
+def bit_slice(image, bit):
+    # Convert the image to grayscale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    # Extract the bit plane using bitwise shift right operator
+    bit_plane = (gray_image >> bit) & 1
+    
+    
+    # Create a binary image from the bit plane
+    binary_image = np.uint8(bit_plane * 255)
+    
+    return binary_image
 
-dx, dy = np.shape(input_image)
+# Load the image
+image = cv2.imread('bone.png')
 
-output_image = np.zeros((dx, dy), dtype=np.uint8)
+# Perform bit-level slicing for bit 7
+bit_7_image = bit_slice(image, 7)
 
-for i in range(dx):
-    for j in range(dy):
-        binary_rep = np.binary_repr(input_image[i][j], width=8)
-        bits = [binary_rep[i:i+1] for i in range(0, len(binary_rep), 1)]
-        #print(bits)
-        bits[1] = '1'
-        bits[2:8] = '0'
-        bits = "".join(bits)
-        #print(bits)
-        bits = int(bits, 2)
-        output_image[i][j] = bits
-
-cv2.imshow('input', input_image)    
-cv2.imshow('bit_sliced', output_image)
-key = cv2.waitKey(0)
-
-test = '10001001'
-bits = [test[i:i+1] for i in range(0, len(test), 1)]
-print(bits)
-        
-
-        
-
+# Display the result
+cv2.imshow('Bit 7 Image', bit_7_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
