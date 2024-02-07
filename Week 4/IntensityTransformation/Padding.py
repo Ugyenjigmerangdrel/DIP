@@ -1,41 +1,42 @@
 import numpy as np
+import cv2
 
-inputmatrix = np.random.randint(255, size=(10,10))
+def padding_symmetric(matrix, padding):
+    height, width = np.shape(matrix)
 
-paddingsize = int(input("Enter the size of padding: "))
-dx, dy = np.shape(inputmatrix)
-outputdim = ((2*paddingsize)+dx, (2*paddingsize)+dy)
+    new_height = height + 2 * padding
+    new_width = width + 2 * padding
 
-outputmatrix =np.zeros(outputdim)
-dix, diy = np.shape(outputmatrix)
-print(dix, diy)
-
-for i in range(0, dix-(2*paddingsize)):
-    for j in range(0, diy-(2*paddingsize)):
-        outputmatrix[i+paddingsize][j+paddingsize] = inputmatrix[i][j]
-
-def neighbour_finder(x, y):
-    left = (x, y-1) if x > 0 else 0
-    top = (x-1, y) if y > 0 else 0
-    leftcorner = (x-1, y-1)
-    return [left, top, leftcorner]
-
-for i in range(0+paddingsize, dix-(2*paddingsize)):
-    for j in range(0+paddingsize, diy-(2*paddingsize)):
-        neighbor = neighbour_finder(i, j)
-        print(neighbor)
-        lx, ly = neighbor[0]
-        tx, ty = neighbor[1]
-        tlx, tly = neighbor[2]
-
-        if outputmatrix[lx][ly] == 0:
-            outputmatrix[lx][ly] = outputmatrix[i][j]
-        elif outputmatrix[tx][ty] == 0:
-            outputmatrix[tx][ty] = outputmatrix[i][j]
-        elif outputmatrix[tlx][tly] == 0:
-            outputmatrix[tlx][tly] = outputmatrix[i][j]
+    result_matrix = np.zeros((new_height, new_width), dtype=matrix.dtype)
 
 
+    result_matrix[padding:padding + height, padding:padding + width] = matrix
+    print(result_matrix)
+    
+    # Reflect horizontally
+    for x in range(padding):
+        result_matrix[:, x] = result_matrix[:, 2 * padding - x - 1]
+        result_matrix[:, new_width - x - 1] = result_matrix[:, new_width - 2 * padding + x]
+    print(result_matrix) 
+        
 
+    # Reflect vertically
+    for y in range(padding):
+        result_matrix[y, :] = result_matrix[2 * padding - y - 1, :]
+        result_matrix[new_height - y - 1, :] = result_matrix[new_height - 2 * padding + y, :]
 
-print(outputmatrix)
+    return result_matrix
+
+#image = cv2.imread("bone.png",0)
+image = np.random.randint(low=0, high=255, size=(10, 10))
+dx, dy = np.shape(image)
+padding_width = int(input("Enter pad width: "))
+
+# matrix = np.random.randint(low=0, high=255, size=(x, y))
+# print("Original matrix:")
+# print(matrix)
+
+result = padding_symmetric(image, padding_width)
+print("\nResult matrix:")
+print(result)
+#cv2.imwrite("padding_symmetric_image.jpg",result)

@@ -1,26 +1,34 @@
-import cv2
-import math
 import numpy as np
+import cv2
 
-img_input = cv2.imread('mri.png', 0)
-img_input2 = cv2.imread('map.png', 0)
+image_path = "Week2\Intesity tranformation\\bright.png"
+
+# Read the saved image using OpenCV
+loaded_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+log_transform = np.zeros((512, 512), dtype=np.uint8)
+
+normalized_image = loaded_image / 255.0
+# negative_image = np.zeros()
+
+
+for x in range(len(loaded_image)):
+    for y in range(len(loaded_image[x])):
+        log_transform[x, y] = np.array(25 * np.exp(normalized_image[x, y])).astype(dtype=np.uint8)
+
+
+print(loaded_image)
+print('=' *80)
+print(log_transform)
 
 
 
-dx, dy = np.shape(img_input)
-#y less than 1
-img_output = np.array(1 * np.power(img_input/255, 0.3))
-#y greater than one
-img_output2 = np.array(1 * np.power(img_input2/255, 3))
+# negative_image = 255 - 1 - loaded_image
 
-cv2.imshow('input', img_input)
-cv2.imshow('gamma', img_output)
-#cv2.imshow('input', img_input2)
-#cv2.imshow('gamma', img_output2)
-key = cv2.waitKey(0)
 
-if key==27:
-    cv2.destroyAllWindows()
-elif key == ord('s'):
-    cv2.imwrite('./output/log.png', img_output)
-    cv2.destroyAllWindows()
+
+
+# Display the original and negative images
+cv2.imshow("Original Image", loaded_image)
+cv2.imshow("Log Transform Image", log_transform)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
