@@ -27,6 +27,5 @@ for i in range(cx - 5, cx - 3):
 print("Input Matrix\n",inputmatrix)
 print("Output Matrix\n",outputmatrix)
 
-
 #xi = x cos b + y sin b
 #yi = y cos b - x sin b
