@@ -2,14 +2,14 @@ import cv2
 import numpy as np
 
 # Load the grayscale image
-image = cv2.imread('gaussian_Noise_Image.png', cv2.IMREAD_GRAYSCALE)
+image = cv2.imread('noisy_img.jpg', cv2.IMREAD_GRAYSCALE)
 cv2_output_img = np.zeros_like(image)
 
 # Get the dimensions of the image
 height, width = image.shape
 
 # Define the size of the median filter window (3x3)
-window_size = 3
+window_size = 4
 
 # Create an empty output image
 output_image = np.zeros((height, width), dtype=np.uint8)
