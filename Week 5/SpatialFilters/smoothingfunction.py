@@ -47,7 +47,8 @@ output_image3, padded_image3 = smoothImage(input_image, 3, filter_gaussian3, 1/n
 cv2.imshow('Original Grayscale Image', padded_image)
 cv2.imshow('3by3', output_image)
 cv2.imshow('5by5', output_image2)
-cv2.imshow('7by7', output_image2)
+cv2.imshow('7by7', output_image3)
+cv2.imwrite('SmoothedImage.jpg', output_image2)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
