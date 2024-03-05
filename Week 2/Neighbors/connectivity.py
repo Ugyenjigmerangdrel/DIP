@@ -10,7 +10,7 @@ def fourConnected(xp, yp, xq, yq):
     n4p.append((xp+1,yp))
     n4p.append((xp,yp-1))
     n4p.append((xp, yp+1))
-    print(n4p)
+    #print(n4p)
 
     if matrix[xp, yp] == matrix[xq, yq]:
         if (xq, yq) in n4p:
@@ -62,6 +62,7 @@ def mixConnected(xp, yp, xq, yq):
         1) q is in N4(p), or
         2) q is in ND(p) and the set N4(p)∩N4(q) has no pixels whose values are from V.
     """
+    #print(ndp)
     if matrix[xp, yp] == matrix[xq, yq]:
         if (xq, yq) in n4p:
             return "They are M-Connected"
@@ -71,7 +72,7 @@ def mixConnected(xp, yp, xq, yq):
                 for j in n4q:
                     if i == j:
                         insec.append(i)
-
+            print(insec)
             if len(insec) > 0:
                 for k in insec:
                     
@@ -95,3 +96,16 @@ xq = int(input("Xq:"))
 yq = int(input("Yq:"))
 #print(fourConnected(xp, yp, xq, yq))
 print(mixConnected(xp, yp, xq, yq))
+
+# p -> 1,1(1)
+# v = [1]
+# q -> 0,2(1)
+# n4p -> 0,1; 1,0; 1,2; 2,1; no
+# ndp -> 0,0; 2,0; 0,2; 2,2; yes
+# N4(p)∩N4(q) has no pixels whose values are from V.
+# n4q -> 0, 1; 1, 2;
+# N4(p)∩N4(q) -> 0,1(1); 1,2(0); conditions not m connected
+
+
+
+
