@@ -2,7 +2,7 @@ import numpy as np
 
 #matrix = np.matrix('0, 1, 1; 0, 1, 0; 0, 0, 1')
 
-matrix = np.matrix('0, 1, 1; 0, 1, 0; 0, 0, 1')
+matrix = np.matrix('0, 0, 1; 0, 1, 0; 0, 0, 1')
 
 def fourConnected(xp, yp, xq, yq):
     n4p = []

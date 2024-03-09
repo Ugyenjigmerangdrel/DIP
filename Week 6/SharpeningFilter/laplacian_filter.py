@@ -1,7 +1,9 @@
 import numpy as np
 import cv2
 import math
-image = cv2.imread('SmoothedImage.jpg', cv2.IMREAD_GRAYSCALE)
+import matplotlib.pyplot as plt
+
+image = cv2.imread('moon.png', cv2.IMREAD_GRAYSCALE)
 dx, dy = image.shape
 # Create a sharpening filter
 laplacian_operator = np.array([
@@ -50,11 +52,31 @@ cv_fs = np.uint8(K * (fm / np.max(fm)))
 scaled_up_image = np.uint8(fm)
 
 
-# Show the sharpened image
-cv2.imshow('Original Image', image)
-cv2.imshow('Manual', sharpened_image)
-cv2.imshow('Scaled Up Image', scaled_up_image)
-cv2.imshow('Filtered Image', fs)
-cv2.imshow('CV Filtered Image', cv_fs)
-cv2.imshow('CV2 Laplacian', cv2_laplacian)
-cv2.waitKey(0)
+# # Show the sharpened image
+# cv2.imshow('Original Image', image)
+# cv2.imshow('Manual', sharpened_image)
+# cv2.imshow('Scaled Up Image', result_image)
+# cv2.imshow('Filtered Image', fs)
+# cv2.imshow('CV Filtered Image', cv_fs)
+# cv2.imshow('CV2 Laplacian', cv2_laplacian)
+# cv2.waitKey(0)
+
+
+plt.subplot(2, 3, 1)
+plt.imshow(image, cmap='gray')
+plt.title('Original Image')
+
+plt.subplot(2, 3, 2)
+plt.imshow(sharpened_image, cmap='gray')
+plt.title('Laplacian Filter')
+
+plt.subplot(2, 3, 3)
+plt.imshow(fm, cmap='gray')
+plt.title('Scaled Image')
+
+plt.subplot(2, 3, 4)
+plt.imshow(fs, cmap='gray')
+plt.title('Filtered Image')
+
+plt.tight_layout
+plt.show()
