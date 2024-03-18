@@ -4,11 +4,8 @@ import matplotlib.pyplot as plt
 
 def filter2D(image, kernal):
     dx, dy = image.shape
-
     padded_image = np.pad(image, 1, 'constant')
-
     result_image = np.zeros_like(image, dtype=np.float32)
-
     for i in range(dx):
         for j in range(dy):
             result_image[i, j] = np.sum(padded_image[i:i+3, j:j+3]*kernal)
@@ -44,5 +41,5 @@ cv2.imshow('Original', image)
 cv2.imshow('Laplacian', filtered_image)
 cv2.imshow('G', g)
 cv2.imshow('Scaled Laplacian', gClip)
-
+cv2.imwrite('LaplacianImage.png', gClip)
 cv2.waitKey(0)
