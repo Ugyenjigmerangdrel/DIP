@@ -66,8 +66,6 @@ plt.subplot(2, 3, 5)
 plt.imshow(output_image_min, cmap='gray')
 plt.title('Max Filter Image')
 
-
-
 plt.subplot(2, 3, 6)
 plt.imshow(output_image_median, cmap='gray')
 plt.title('Median Filter Image')
