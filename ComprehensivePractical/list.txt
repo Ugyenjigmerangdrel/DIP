@@ -1,0 +1,12 @@
+Exp01. Reading and Writing an Image.
+Exp02: Color to Gray scale conversion.
+Exp03: Creating Black and White Image.
+Exp04: Intensity range adjustment.
+Exp05: Contrast Stretching and Bit plane slicing.
+Exp06: Intensity transformations: Anti-log, log, negative, nth root, power.
+Exp07: Affine Transformations: Scaling, Shear, Translation.
+Exp08: Histogram: stem histogram, plot histogram, histogram using imhist, histogram equalization.
+Exp09. Correlation and Convolution in Filtering.
+Exp10. Smoothing Filters-Gaussian, avg, median filters.
+Exp11. Gradient Filters - prewitt, Sobel, Roberts filters.
+Exp12. Morphological processing: Erosion, dilation, closing, Opening, boundary detection

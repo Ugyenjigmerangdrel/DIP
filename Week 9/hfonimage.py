@@ -1,41 +1,29 @@
 import numpy as np
 import matplotlib.pyplot as plt 
+import cv2
 
-image=np.array([[0,0,0,0,0,0,0],
-                [0,0,1,1,0,0,0],
-                [0,1,0,0,1,0,0],
-                [0,1,0,0,1,0,0],
-                [0,0,1,0,1,0,0],
-                [0,0,1,0,1,0,0],
-                [0,1,0,0,0,1,0],
-                [0,1,0,0,0,1,0],
-                [0,1,1,1,1,0,0],
-                [0,0,0,0,0,0,0]])
+image=cv2.imread('hole.png', cv2.IMREAD_GRAYSCALE)
 
-window=np.array([[1,1,1],
-                 [1,1,1,],
-                 [1,1,1]])
+window=np.ones((45,45),np.uint8)
 
 def dilate(i, j, image, mask):
     result_img = np.zeros_like(image)
-    for x in range(image.shape[0]):
-        for y in range(image.shape[1] - 1):
-            x1 = max(0, x - i)
-            x2 = min(image.shape[0], x + i + 1)
-            y1 = max(0, y - j)
-            y2 = min(image.shape[1], y + j + 1)
-
+    for x in range(i, image.shape[0]-i):
+        for y in range(j, image.shape[1]-j):
+            x1 = x - i
+            x2 = x + i + 1
+            y1 = y - j
+            y2 = y + j + 1
+            
             roi = image[x1:x2, y1:y2]
             if roi.shape == mask.shape:
                 result = np.logical_and(roi, mask)
             else:
                 result = mask
-
+                   
             if np.any(result):
                 result_img[x, y] = 1
     return result_img
-
-
 def compliment(image):
     return 1-image
 
@@ -56,8 +44,8 @@ def hole_filling(image, window, start_x, start_y, end_x, end_y):
     return output_image
             
 
-
-output=hole_filling(image, window,2,2,7,5)
+dx, dy = image.shape
+output=hole_filling(image, window,0,0,dx,dy)
 filled=output+image
 plt.subplot(3,2,1)
 plt.imshow(image,cmap='gray')

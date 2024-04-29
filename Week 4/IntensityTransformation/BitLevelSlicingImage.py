@@ -18,7 +18,7 @@ def bit_level_slicing(image, bit):
             output_image[i][j] = int(reverse_br[bit]) * 255
             
 
-bit_level_slicing(iimage, 1)
+bit_level_slicing(iimage, 7)
 
 cv2.imshow('input', iimage)
 cv2.imshow('output', output_image)
