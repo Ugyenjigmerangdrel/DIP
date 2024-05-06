@@ -1,6 +1,5 @@
 import numpy as np
 
-# string input
 a = np.matrix('1 2 3; 4 5 6; 7 8 9')
 b = np.matrix('4 3 2; 4 8 9; 7 6 9')
 c = np.add(a, b)
@@ -10,6 +9,8 @@ smul = np.multiply(a, 2)
 sdiv = np.divide(b, 2)
 sadd = np.add(a, 1)
 ssub = np.subtract(a, 1)
+print("Input Matrix A: \n",a)
+print("Input Matrix B: \n",b)
 print("Addition: \n",c)
 print("Multiplication: \n",mul)
 print("Subtraction: \n",sub)
@@ -36,7 +37,9 @@ tr = mat.transpose()
 det = np.linalg.det(mat)
 
 inv = np.linalg.inv(mat)
-
+print(a)
+print(b)
+print(c)
 print(tr)
 print(inv)
 print(det)

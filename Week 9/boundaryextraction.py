@@ -42,7 +42,7 @@ plt.subplot(2, 3, 3)
 plt.imshow(final_image, cmap='gray')
 plt.title('Boundary Image')
 
-
-
 plt.tight_layout
 plt.show()
+
+

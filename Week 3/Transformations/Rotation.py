@@ -20,12 +20,12 @@ outputmatrix = np.zeros((10, 10))
 
 for i in range(cx - 5, cx - 3):
     for j in range(cy - 5, cy - 1):
-        xi, yi = rotateTransform(i, j, 2*np.pi)
+        xi, yi = rotateTransform(i, j, np.pi/2)
         print(math.ceil(xi), math.ceil(yi))
         if 0 <= math.ceil(xi) < 10 and 0 <= math.ceil(yi) < 10:
             outputmatrix[math.ceil(xi), math.ceil(yi)] = 1
 print("Input Matrix\n",inputmatrix)
 print("Output Matrix\n",outputmatrix)
 
-#xi = x cos b + y sin b
-#yi = y cos b - x sin b
+
+

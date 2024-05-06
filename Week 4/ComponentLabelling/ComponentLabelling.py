@@ -1,9 +1,8 @@
 import numpy as np
-import cv2
+
 originalmatrix = np.zeros((10, 10), dtype=np.uint8)
 dx, dy = np.shape(originalmatrix)
 cx,cy = dx//2, dy//2
-
 #Object one definition
 originalmatrix[0:(cx-1), 1:(cy-1)] = 1
 originalmatrix[1:(cx-2), (cy-1):(cy+1)] = 1
@@ -12,12 +11,9 @@ originalmatrix[1:(cx-2), (cy-1):(cy+1)] = 1
 originalmatrix[(cx+1):(cx+3), 1:(cy-1)] = 1
 originalmatrix[(cx+2):(cx+4), (cy-1):(cy+1)] = 1
 originalmatrix[(cx+4):(cx+5), 1:(cy)] = 1
-
 print(originalmatrix, "\n")
 
 output_matrix = np.zeros_like(originalmatrix, dtype=np.uint8)
-
-
 #neighbor finder
 def neighbour_finder(x, y):
     left = output_matrix[x - 1][y] if x > 0 else 0
@@ -27,8 +23,8 @@ def neighbour_finder(x, y):
 label = 0
 count = 0
 pass_count = 1
-
 special_cases = []
+
 for i in range(0, dx):
     for j in range(0, dy):
         if originalmatrix[i][j] == 1:
@@ -72,13 +68,7 @@ if len(special_cases) > 0 and pass_count == 2:
                 if output_matrix[i][j] != 0 and output_matrix[i][j] in special_cases[z]:
                     output_matrix[i][j] = min(special_cases[z])
 
-
-
-
 print("\nAfter Pass 2: \n",output_matrix)
 print("Number of Objects: ", count)
-#cv2.namedWindow("Original Matrix", cv2.WINDOW_NORMAL)
-#cv2.imshow("Original Matrix", originalmatrix)
-#cv2.waitKey(0)
 
 

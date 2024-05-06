@@ -46,21 +46,23 @@ for y in range(height):
 
 
 
-plt.subplot(2, 3, 1)
-plt.imshow(image, cmap='gray')
-plt.title('Original Image')
 
-plt.subplot(2, 3, 2)
+
+plt.subplot(2, 3, 1)
 plt.imshow(salt, cmap='gray')
 plt.title('Salt Image')
 
-plt.subplot(2, 3, 3)
-plt.imshow(output_image_max, cmap='gray')
-plt.title('Min Filter Image')
-
-plt.subplot(2, 3, 4)
+plt.subplot(2, 3, 2)
 plt.imshow(pepper, cmap='gray')
 plt.title('Pepper Image')
+
+plt.subplot(2, 3, 3)
+plt.imshow(image, cmap='gray')
+plt.title('Original Image')
+
+plt.subplot(2, 3, 4)
+plt.imshow(output_image_max, cmap='gray')
+plt.title('Min Filter Image')
 
 plt.subplot(2, 3, 5)
 plt.imshow(output_image_min, cmap='gray')

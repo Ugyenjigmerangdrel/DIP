@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import math
-image = cv2.imread('kt.jpeg', cv2.IMREAD_GRAYSCALE)
+image = cv2.imread('noisy_img.jpg', cv2.IMREAD_GRAYSCALE)
 dx, dy = image.shape
 # Create a sharpening filter
 sharpening_filter = np.array([

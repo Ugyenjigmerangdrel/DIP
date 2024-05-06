@@ -38,7 +38,7 @@ cv2.blur(image, (5, 5), smoothed_image)
 
 for y in range(padding_size, height + padding_size):
     for x in range(padding_size, width + padding_size):
-        print(padded_image[y - padding_size:y + padding_size + 1, x - padding_size:x + padding_size + 1])
+        
         output_image_filter1[y - padding_size, x - padding_size] = int(np.sum(
             padded_image[y - padding_size:y + padding_size + 1, x - padding_size:x + padding_size + 1] * filter1
         ))

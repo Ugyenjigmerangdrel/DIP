@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import math
 
-image = cv2.imread('lena_gray.png')
+image = cv2.imread('lena.jpg', cv2.IMREAD_GRAYSCALE)
 
 salt_prob = 0.02
 pepper_prob = 0.02
@@ -26,7 +26,6 @@ for i in random_coordinates_salt:
 for i in random_coordinates_pepper:
     x, y = coordinates[i]
     noisy_img[x][y] = 0
-
 
 cv2.imshow('Noisy', noisy_img)
 cv2.imwrite('sandpnoisy.png', noisy_img)

@@ -54,7 +54,6 @@ def connected_component(image, window, start_x, start_y, end_x, end_y):
     return output_image
             
 
-
 output=connected_component(image, window,1,1,9,6)
 plt.subplot(1,2,1)
 plt.imshow(image,cmap='gray')

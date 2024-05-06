@@ -37,9 +37,23 @@ gClip = np.uint8(255*(fm/np.max(fm)))
 
 
 
-cv2.imshow('Original', image)
-cv2.imshow('Laplacian', filtered_image)
-cv2.imshow('G', g)
-cv2.imshow('Scaled Laplacian', gClip)
-cv2.imwrite('LaplacianImage.png', gClip)
-cv2.waitKey(0)
+plt.figure(figsize=(10, 10))
+
+plt.subplot(2, 2, 1)
+plt.imshow(image, cmap='gray')
+plt.title('Original')
+
+plt.subplot(2, 2, 2)
+plt.imshow(filtered_image, cmap='gray')
+plt.title('Laplacian')
+
+plt.subplot(2, 2, 3)
+plt.imshow(g, cmap='gray')
+plt.title('Filtered Image')
+
+plt.subplot(2, 2, 4)
+plt.imshow(gClip, cmap='gray')
+plt.title('Scaled Laplacian')
+
+plt.savefig('LaplacianImage.png')
+plt.show()

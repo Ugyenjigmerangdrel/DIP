@@ -1,6 +1,3 @@
-"""
-Scaling:
-"""
 import numpy as np
 
 def scalingTrans(x, y, cx, cy):
@@ -20,8 +17,6 @@ for i in range(cr - 2, cr + 2):
     for j in range(cr - 2, cc + 2):
         zmat[i][j] = 1
 
-
-
 outputmatrix = np.zeros((10, 10))
 cx = int(input("CX="))
 cy = int(input("CY="))
@@ -37,21 +32,11 @@ all_yi = []
 for i in range(cr - 2, cr + 2):
     for j in range(cr - 2, cc + 2):
         xi, yi = scalingTrans(i, j, cx, cy)
-        print(xi, yi)
         if 0 <= xi < 10 and 0 <= yi < 10:
             outputmatrix[int(xi), int(yi)] = 1
             all_xi.append(xi)
             all_yi.append(yi)
 
 print("Input Matrix: \n",zmat)
-print(max(all_xi))
-print(max(all_yi))
-
-print(min(all_xi))
-print(min(all_yi))
-
 outputmatrix[min(all_xi):(max(all_yi) + 2), min(all_xi):(max(all_yi) + 2)] = 1
-
 print(outputmatrix)
-
-# bilinear interpolation

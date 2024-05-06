@@ -27,8 +27,6 @@ def erosion(image, kernel):
     
     return result
 
-
-
 def dilation(image, kernel):
     rows, cols = image.shape
     
@@ -54,11 +52,6 @@ dilated_open = dilation(opened_image, struc_element)
 
 closed_image = erosion(dilated_open, struc_element)
 
-
-cv2output = cv2.morphologyEx(binary_image, cv2.MORPH_OPEN, struc_element)
-cv2output1 = cv2.morphologyEx(binary_image, cv2.MORPH_CLOSE, struc_element)
-
-
 # Display the original and matched histograms
 plt.subplot(2, 3, 1)
 plt.imshow(binary_image, cmap='gray')
@@ -80,10 +73,8 @@ plt.subplot(2, 3, 5)
 plt.imshow(closed_image, cmap='gray')
 plt.title('Closed Image')
 
-
 plt.tight_layout
 plt.show()
-
 
 cv2.waitKey(0)
 print(image)

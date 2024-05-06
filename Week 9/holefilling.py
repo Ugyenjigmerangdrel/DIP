@@ -55,16 +55,17 @@ def hole_filling(image, window, start_x, start_y, end_x, end_y):
     
     return output_image
             
-
-
 output=hole_filling(image, window,2,2,7,5)
 filled=output+image
 plt.subplot(3,2,1)
 plt.imshow(image,cmap='gray')
+plt.title('Original Image')
 plt.subplot(3,2,2)
+
 plt.imshow(output,cmap='gray')
 plt.subplot(3,2,3)
 plt.imshow(compliment(image),cmap='gray')
 plt.subplot(3,2,4)
 plt.imshow(filled,cmap='gray')
+plt.title('Filled Image')
 plt.show()

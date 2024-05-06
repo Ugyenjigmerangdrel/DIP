@@ -1,17 +1,34 @@
 import numpy as np
 import cv2
 
-image = cv2.imread('sandpnoisy.png', cv2.IMREAD_GRAYSCALE)
+input_image = cv2.imread('compre.jpg', cv2.IMREAD_GRAYSCALE)
+
+#defining filter mask and size
 filter_gaussian = np.array([
+    [1, 2, 1],
+    [2, 4, 2],
+    [1, 2, 1]], dtype=int)
+
+filter_gaussian2 = np.array([
     [1,1,1,1,1],
     [1,2,2,2,1],
     [1,2,4,2,1],
     [1,2,2,2,1],
     [1,1,1,1,1]], dtype=int)
 
+print(np.sum(filter_gaussian2  ))
+
+filter_gaussian3 = np.array([
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,2,2,2,1,1],
+    [1,1,2,4,2,1,1],
+    [1,1,2,2,2,1,1],
+    [1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1]], dtype=int)
+
 factor = 1/36
 padding_factor = 2
-
 #function definition
 def smoothImage(input_image, padding_factor, filter, factor):
     padded_image = cv2.copyMakeBorder(input_image, padding_factor, padding_factor, padding_factor, padding_factor, cv2.BORDER_CONSTANT)
@@ -22,30 +39,15 @@ def smoothImage(input_image, padding_factor, filter, factor):
                 output_image[i-padding_factor, j-padding_factor] = int(np.sum(padded_image[i-padding_factor:i+padding_factor + 1, j-padding_factor:j+padding_factor+1] * filter) * factor)
     return output_image, padded_image
 
-output_image, padded_image = smoothImage(image, padding_factor, filter_gaussian, factor)
 
-cv2_output_img = np.zeros_like(image)
+output_image, padded_image = smoothImage(input_image, padding_factor, filter_gaussian2, factor)
 
-height, width = image.shape
+final_image = input_image - output_image
 
-window_size = 4
+final_output = input_image + (factor*final_image)
 
-output_image_median = np.zeros((height, width), dtype=np.uint8)
-
-for y in range(height):
-    for x in range(width):
-        neighborhood = []
-        for j in range(max(0, y - 1), min(height, y + 2)):
-            for i in range(max(0, x - 1), min(width, x + 2)):
-                neighborhood.append(image[j, i])
-
-        median_value = np.median(neighborhood)
-        output_image_median[y, x] = median_value
-
-cv2.medianBlur(image, 5, cv2_output_img)
-
-cv2.imshow('Original', image)
-cv2.imshow('5by5 Average Filter', output_image)
-cv2.imshow('median filter', output_image_median)
+cv2.imshow('Original Image', input_image)
+cv2.imshow('Smoothed Image', output_image)
+cv2.imshow('Final Image', final_image)
+cv2.imshow('Final Output', final_output)
 cv2.waitKey(0)
-cv2.destroyAllWindows()
