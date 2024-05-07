@@ -1,14 +1,14 @@
 import cv2
 import numpy as np
 
-original_img = cv2.imread("lena.png", cv2.IMREAD_GRAYSCALE)
+original_img = cv2.imread("gnoise.png", cv2.IMREAD_GRAYSCALE)
 
 img = np.pad(original_img, 2, mode="symmetric")
 
-blurred_image = cv2.GaussianBlur(img, (11, 11), 0)
+
 
 # Define the maximum window size (Smax)
-Smax = 5
+Smax = 11
 # Function to apply the Adaptive Median Filter
 def adaptive_mid_filter(img, Smax):
     output = np.zeros_like(img, dtype=np.uint8)
@@ -52,7 +52,7 @@ def adaptive_mid_filter(img, Smax):
 filtered_img = adaptive_mid_filter(img, Smax)
 
 cv2.imshow("Original Image", original_img)
-cv2.imshow("Blurred Image", blurred_image)
+# cv2.imshow("Blurred Image", blurred_image)
 cv2.imshow("Adaptive Median Filter Image", filtered_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
